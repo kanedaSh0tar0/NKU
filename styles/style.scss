@@ -116,13 +116,13 @@ $md3: 768px;
     }
 }
 
-@mixin arrowsContainer($height) {
+@mixin arrowsContainer($height, $width, $left) {
     position: absolute;
-    width: 1320px;
+    width: $width;
     display: flex;
     justify-content: space-between;
     top: ($height / 2) - 60px;
-    left: -110px;
+    left: $left;
 }
 
 @mixin titleBefore {
@@ -196,7 +196,7 @@ section {
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .container-caption {
@@ -211,9 +211,13 @@ section {
         font-family: $inter;
         font-weight: 700;
         font-size: 40px;
-        line-height: 60px;
+        line-height: 150%;
         letter-spacing: 0.05em;
         text-transform: uppercase;
+
+        @media (max-width: $md1) {
+            font-size: 30px;
+        }
     }
 
     .subtitle {
@@ -222,6 +226,11 @@ section {
         font-size: 20px;
         line-height: 30px;
         width: 65%;
+
+        @media (max-width: $md1) {
+            font-size: 16px;
+            line-height: 24px;
+        }
     }
 }
 
@@ -237,37 +246,40 @@ header {
     .header-container {
         display: flex;
         justify-content: space-between;
-        width: 95%;
-        margin: 0 auto;
+        width: 100%;
+        padding: 0 15px;
 
-        .logo-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .logo {
+            background-image: url(../img/logo.png);
+            background-position: center;
+            background-size: cover;
 
-            .logo {
-                background-image: url(../img/logo.png);
-                background-position: center;
-                background-size: cover;
+            width: 200px;
+            height: 70px;
 
-                width: 200px;
-                height: 70px;
-
-                @media (max-width: $md1) {
-                    width: 170px;
-                    height: 60px;
-                }
-
-                @media (max-width: $md2) {
-                    width: 145px;
-                    height: 50px;
-                }
-
-                @media (max-width: $md3) {
-                    width: 87px;
-                    height: 30px;
-                }
+            @media (max-width: $md1) {
+                width: 170px;
+                height: 60px;
             }
+
+            @media (max-width: $md2) {
+                width: 145px;
+                height: 50px;
+            }
+
+            @media (max-width: $md3) {
+                width: 87px;
+                height: 30px;
+
+                margin: 0 auto;
+            }
+        }
+
+        .menu {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
 
             nav {
                 width: 515px;
@@ -307,24 +319,11 @@ header {
                     display: none;
                 }
 
-                @media (max-width: $md2) {
-                    margin-left: 30px;
-                }
-
                 @media (max-width: $md3) {
-                    
+                    position: absolute;
+                    margin: 0;
                 }
             }
-
-            @media (max-width: $md3) {
-                flex-direction: row-reverse;
-            }
-        }
-
-        .contacts {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
 
             .contacts-info {
                 a {
@@ -362,9 +361,18 @@ header {
                 }
             }
 
-            button {
-                @extend %button;
+            @media (max-width: $md3) {
+                flex: 0;
             }
+        }
+
+        button {
+            @extend %button;
+        }
+
+        @media (max-width: $md3) {
+            flex-direction: row-reverse;
+            justify-content: center;
         }
     }
 }
@@ -373,7 +381,7 @@ header {
     background: $darkGray;
 
     width: 100%;
-    padding: 30px 0;
+    padding: 10px 0;
     overflow: hidden;
 
     .container {
@@ -395,6 +403,17 @@ header {
             img {
                 margin: 0 10px;
                 opacity: 0.5;
+                max-width: 1100px;
+                width: 100%;
+                height: 610px;
+                flex: 1 0 1100px;
+
+                @media (max-width: $md1) {
+                    max-width: 960px;
+                    width: 100%;
+                    height: 504px;
+                    flex: 1 0 960px;
+                }
             }
 
             .active-slide {
@@ -403,8 +422,12 @@ header {
         }
 
         .arrows {
-            @include arrowsContainer(610px);
+            @include arrowsContainer(610px, 1320px, -110px);
             @include arrows;
+
+            @media (max-width: $md1) {
+                @include arrowsContainer(504px, 740px, 110px);
+            }
         }
 
         .slider-points {
@@ -489,7 +512,7 @@ header {
         }
 
         .arrows {
-            @include arrowsContainer(570px);
+            @include arrowsContainer(570px, 1320px, -110px);
             @include arrows;
         }
     }
