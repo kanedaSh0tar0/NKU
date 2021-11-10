@@ -17,16 +17,13 @@ const controlsPosition = (control, container) => {
         control.style.width = `${container.offsetWidth + (arrow.offsetWidth * 2) + (60 * 2)}px`
     }
 }
-
-controlsPosition(sliderControls[0], slidesContainer[0])
-controlsPosition(sliderControls[1], slidesContainer[1])
-
-
-window.addEventListener('resize', () => {
+window.addEventListener('DOMContentLoaded', () => {
     controlsPosition(sliderControls[0], slidesContainer[0])
+    controlsPosition(sliderControls[1], slidesContainer[1])
 })
 
 window.addEventListener('resize', () => {
+    controlsPosition(sliderControls[0], slidesContainer[0])
     controlsPosition(sliderControls[1], slidesContainer[1])
 })
 
