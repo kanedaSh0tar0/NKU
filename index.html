@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/boorger.js" defer></script>
+    <script src="./scripts/slider.js" defer></script>
     <title>НКУ</title>
 </head>
 
@@ -23,13 +25,11 @@
                     <a href="#contacts">Контакты</a>
                 </nav>
 
-                <div class="boorger-menu">
+                <div class="boorger-menu-btn">
                     <div class="stick"></div>
                     <div class="stick"></div>
                     <div class="stick"></div>
                 </div>
-
-
 
                 <div class="contacts-info">
                     <a href="">info@nku.su</a>
@@ -42,6 +42,24 @@
         </div>
     </header>
 
+    <div class="boorger-menu">
+        <i class="fas fa-times"></i>
+
+        <nav>
+            <a href="#about">О компании</a>
+            <a href="#projects">Проекты</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div class="contacts-info">
+            <a id="borger-contact1" href=""><i class="far fa-envelope"></i>info@nku.su</a>
+            <a id="borger-contact2" href=""><i class="fas fa-phone"></i>+7-916-444-11-59</a>
+        </div>
+    </div>
+
+    <div class="menu-bg"></div>
+
     <section class="first-screen">
         <div class="container">
             <div class="container-caption">
@@ -51,20 +69,22 @@
                 </div>
             </div>
 
+            <button class="mobile-btn">Оставить заявку</button>
+
             <div class="slider">
                 <div class="slides-container">
-                    <img src="./img/slider/1.png" alt="Что-то пошло не по плану :(">
-                    <img src="./img/slider/2.png" alt="Что-то пошло не по плану :(">
-                    <img src="./img/slider/3.png" alt="Что-то пошло не по плану :(">
-                    <img class="active-slide" src="./img/slider/4.png" alt="Что-то пошло не по плану :(">
-                    <img src="./img/slider/5.png" alt="Что-то пошло не по плану :(">
-                    <img src="./img/slider/6.png" alt="Что-то пошло не по плану :(">
-                    <img src="./img/slider/7.png" alt="Что-то пошло не по плану :(">
-                
-                    <!-- <div class="arrows">
-                        <div class="arrow-left"><i class="fas fa-caret-left"></i></div>
-                        <div class="arrow-right"><i class="fas fa-caret-left"></i></div>
-                    </div> -->
+                    <img class="slide" src="./img/slider/1.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide" src="./img/slider/2.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide" src="./img/slider/3.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide active-slide" src="./img/slider/4.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide" src="./img/slider/5.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide" src="./img/slider/6.png" alt="Что-то пошло не по плану :(">
+                    <img class="slide" src="./img/slider/7.png" alt="Что-то пошло не по плану :(">
+
+                    <div class="arrows">
+                        <div class="arrow arrow-left"><i class="fas fa-caret-left left"></i></div>
+                        <div class="arrow arrow-right"><i class="fas fa-caret-left right"></i></div>
+                    </div>
                 </div>
 
                 <div class="slider-points">
@@ -123,33 +143,34 @@
                 <h2 class="title">Выполненные проекты</h2>
             </div>
 
-            <div class="project">
-                <div class="slides-container">
-                    <img src="./img/projects/1.png" alt="">
+            <div class="slides-container">
+                <img class="slide" src="./img/projects/1.png" alt="">
+                <img class="slide active-slide" src="./img/projects/1.png" alt="">
+                <img class="slide" src="./img/projects/1.png" alt="">
 
-                    <!-- <div class="arrows">
-                        <div class="arrow-left"><i class="fas fa-caret-left"></i></div>
-                        <div class="arrow-right"><i class="fas fa-caret-left"></i></div>
-                    </div> -->
-                </div>
-
-                <div class="info">
-                    <div class="left">
-                        <h3 class="info-name">ЖК Вавилово</h3>
-                        <ul>
-                            <li><span>Дата завершения проекта:</span>2020 г.</li>
-                            <li><span>Сайт:</span>https://nku.su/</li>
-                            <li><span>Адрес:</span>г. Москва, ул. Архитектора Власова, д. 6</li>
-                        </ul>
-                    </div>
-
-                    <div class="right">
-                        <p>Выполнены работы по программированию, пуско-наладке и диспетчеризации 29 щитов управления
-                            системами кондиционирования, приточно-вытяжной вентиляции, тепловых завес и контроля
-                            загазованности. Использовались контроллеры компании Segnetics - SMH2G и Pixel.</p>
-                    </div>
+                <div class="arrows">
+                    <div class="arrow-left"><i class="fas fa-caret-left"></i></div>
+                    <div class="arrow-right"><i class="fas fa-caret-left"></i></div>
                 </div>
             </div>
+
+            <div class="info">
+                <div class="left">
+                    <h3 class="info-name">ЖК Вавилово</h3>
+                    <ul>
+                        <li><span>Дата завершения проекта:</span>2020 г.</li>
+                        <li><span>Сайт:</span>https://nku.su/</li>
+                        <li><span>Адрес:</span>г. Москва, ул. Архитектора Власова, д. 6</li>
+                    </ul>
+                </div>
+
+                <div class="right">
+                    <p>Выполнены работы по программированию, пуско-наладке и диспетчеризации 29 щитов управления
+                        системами кондиционирования, приточно-вытяжной вентиляции, тепловых завес и контроля
+                        загазованности. Использовались контроллеры компании Segnetics - SMH2G и Pixel.</p>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -164,14 +185,14 @@
             </div>
 
             <form id="form">
-                    <input id="name" type="text" placeholder="Имя">
-                    <input id="tel" type="tel" placeholder="Номер телефона">
-                    <input id="btn" type="button" value="Оставить заявку">
+                <input id="name" type="text" placeholder="Имя">
+                <input id="tel" type="tel" placeholder="Номер телефона">
+                <input id="btn" type="button" value="Оставить заявку">
 
-                    <div class="file">
-                        <input id="file" type="file" value="Прикрепить проект">
-                        <label for="file">Прикрепить проект</label>
-                    </div>
+                <div class="file">
+                    <input id="file" type="file" value="Прикрепить проект">
+                    <label for="file">Прикрепить проект</label>
+                </div>
             </form>
         </div>
     </section>
@@ -248,22 +269,6 @@
             <i class="fas fa-caret-left"></i>
         </div>
     </a>
-
-    <script>
-        let nav = document.getElementsByTagName('a')
-
-        for (let item of nav) {
-            item.addEventListener('click', event => {
-                event.preventDefault()
-
-                let itemHref = item.getAttribute('href')
-                document.querySelector(`${itemHref}`).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                })
-            })
-        }
-    </script>
 </body>
 
 </html>

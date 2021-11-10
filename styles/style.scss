@@ -3,6 +3,7 @@
 
 $lightGray: #ebebeb;
 $darkGray: #dfe1e3;
+$menuGray: #c5cbd2;
 $colorRed: #bb1219;
 $colorLightRed: #e33239;
 $colorBorder: #a2aab2;
@@ -214,27 +215,31 @@ $mdCaption: 670px;
     }
 }
 
-@mixin arrowsContainer($height, $width, $left) {
+%arrowsContainer {
     position: absolute;
-    width: $width - 20px;
     display: flex;
     justify-content: space-between;
-    top: ($height / 2) - 30px;
+
+    @media (max-width: $md3) {
+        display: none;
+    }
 }
 
-@mixin titleBefore {
-    .title {
-        display: flex;
-        align-items: center;
-    }
+%titleBefore {
+    @media (min-width: ($mdCaption + 1)) {
+        .title {
+            display: flex;
+            align-items: center;
+        }
 
-    .title:before {
-        content: "";
-        display: block;
-        width: 50px;
-        height: 3px;
-        margin-right: 30px;
-        background: $colorRed;
+        .title:before {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            margin-right: 30px;
+            background: $colorRed;
+        }
     }
 }
 
@@ -244,7 +249,7 @@ $mdCaption: 670px;
     transform: rotate($direction);
 }
 
-@mixin arrows {
+%arrows {
     .arrow-left {
         @extend %arrow;
     }
@@ -259,6 +264,21 @@ $mdCaption: 670px;
 
     .arrow-right .fas {
         @include arrowDirection(180deg);
+    }
+}
+
+%slidesContainer {
+    display: flex;
+    justify-content: center;
+
+    .slide {
+        position: relative;
+        width: 100%;
+    }
+
+    .arrows {
+        @extend %arrowsContainer;
+        @extend %arrows;
     }
 }
 
@@ -412,7 +432,7 @@ header {
                 }
             }
 
-            .boorger-menu {
+            .boorger-menu-btn {
                 width: 30px;
                 height: 24px;
 
@@ -506,8 +526,104 @@ header {
     }
 
     @media (max-width: $md3) {
+        position: fixed;
+        background: $menuGray;
         height: 60px;
+        z-index: 1;
     }
+}
+
+.boorger-menu {
+    position: fixed;
+    width: 100%;
+    top: -100vh;
+    background: $menuGray;
+    z-index: 3;
+
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .fa-times {
+        font-size: 40px;
+
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin: 80px 0 30px;
+
+        a {
+            font-family: $inter;
+            font-size: 16px;
+            line-height: 21px;
+            text-decoration: none;
+            color: $ColorText;
+
+            margin-bottom: 25px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .contacts-info {
+        width: 90%;
+        border: 1px solid $colorBorder;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        margin-bottom: 30px;
+
+        a {
+            font-family: $inter;
+            font-size: 14px;
+            line-height: 17px;
+            text-decoration: none;
+            color: $ColorText;
+
+            &:first-child {
+                margin-bottom: 23px;
+            }
+        }
+
+        .fa-envelope,
+        .fa-phone {
+            width: 25px;
+            height: 25px;
+            color: $menuGray;
+            background: $colorRed;
+            border-radius: 50%;
+            margin-right: 15px;
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fa-phone {
+            transform: rotate(100deg);
+        }
+    }
+}
+
+.menu-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: $menuGray;
+    opacity: 0;
+    z-index: -1;
+
+    transition: all 0.5s linear;
 }
 
 .first-screen {
@@ -522,35 +638,37 @@ header {
         }
     }
 
+    .mobile-btn {
+        @extend %button;
+        display: none;
+
+        @media (max-width: $md3) {
+            display: block;
+            margin: 20px auto 0;
+        }
+    }
+
     .slider {
         position: relative;
         margin-top: 30px;
 
         .slides-container {
-            display: flex;
-            justify-content: center;
+            @extend %slidesContainer;
 
-            img {
-                margin: 0 10px;
+            .slide {
+                margin: 0 20px;
                 opacity: 0.5;
-                max-width: 100%;
+                transition: .5s cubic-bezier(0.4, 0, 0.2, 1);
 
                 @media (max-width: $md2) {
-                    margin: 0 25px;
+                    margin: 0 50px;
                 }
             }
 
             .active-slide {
                 opacity: 1;
+                margin: 0;
             }
-
-            // .arrows {
-            //     @include arrowsContainer(610px, 1350px, -110px);
-            //     @include arrows;
-
-            //     @media (max-width: $md1) {
-            //         @include arrowsContainer(504px, 820px, 15px);
-            //     }
         }
     }
 
@@ -579,14 +697,16 @@ header {
             background: $colorRed;
         }
     }
+
+    @media (max-width: $md3) {
+        padding-top: 60px;
+    }
 }
 
 .about-us {
     margin-top: 130px;
 
-    @media (min-width: ($mdCaption + 1)) {
-        @include titleBefore;
-    }
+    @extend %titleBefore;
 
     .container-caption {
         .subtitle {
@@ -686,24 +806,24 @@ header {
 }
 
 .completed-projects {
-    @media (min-width: ($mdCaption + 1)) {
-        @include titleBefore;
-    }
+    @extend %titleBefore;
+    @extend %info;
 
     background: $lightGray;
 
-    .project {
-        @extend %info;
+    .slides-container {
+        @extend %slidesContainer;
 
+        position: relative;
         margin: 70px 0 100px;
 
-        img {
-            width: 100%;
+        .slide {
+            opacity: 0;
         }
 
-        .arrows {
-            @include arrowsContainer(570px, 1320px, -110px);
-            @include arrows;
+        .active-slide {
+            opacity: 1;
+            margin: 0;
         }
 
         @media (max-width: $md1) {
@@ -721,9 +841,7 @@ header {
 }
 
 .application-form {
-    @media (min-width: ($mdCaption + 1)) {
-        @include titleBefore;
-    }
+    @extend %titleBefore;
 
     background: $darkGray;
 
@@ -847,9 +965,7 @@ header {
 }
 
 .reviews {
-    @media (min-width: ($mdCaption + 1)) {
-        @include titleBefore;
-    }
+    @extend %titleBefore;
 
     .videos {
         display: flex;
@@ -944,10 +1060,7 @@ header {
 }
 
 .contacts-area {
-    @media (min-width: ($mdCaption + 1)) {
-        @include titleBefore;
-    }
-
+    @extend %titleBefore;
     @extend %info;
 
     background: $darkGray;
