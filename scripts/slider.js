@@ -221,12 +221,16 @@ document.addEventListener('DOMContentLoaded', () => {
     centerSlide(secondSlides, countForActive2)
 
     window.addEventListener('resize', () => {
+        let margin = parseInt(window.getComputedStyle(firstSlides[0]).marginRight)
+
         controlsPosition(sliderControls[0], slidesContainer[0])
         controlsPosition(sliderControls[1], slidesContainer[1])
         centerSlide(firstSlides, countForActive1, margin)
         centerSlide(secondSlides, countForActive2)
 
         console.log(margin)
+        console.log(parseInt(window.getComputedStyle(firstSlides[0]).marginRight))
+
     })
 
     changePoint()
@@ -262,4 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else moveSlide('Right')
         } else false
     }
+
+    console.log(margin)
+    console.log(parseInt(window.getComputedStyle(firstSlides[0]).marginRight))
+
 })
