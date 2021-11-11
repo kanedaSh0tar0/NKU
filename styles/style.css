@@ -293,11 +293,13 @@ header .header-container .logo, footer .container .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  max-width: 1100px;
   width: 100%;
 }
 
 .first-screen .slider .slides-container .slide, .completed-projects .slider .slides-container .slide {
   position: relative;
+  max-width: 1100px;
   width: 100%;
   -webkit-transition: opacity 0.5s linear, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transition: opacity 0.5s linear, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
