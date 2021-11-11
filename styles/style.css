@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap");
-.first-screen .slider .slides-container .arrows .arrow-left, .completed-projects .slides-container .arrows .arrow-left, .first-screen .slider .slides-container .arrows .arrow-right, .completed-projects .slides-container .arrows .arrow-right {
+.first-screen .slider .arrows .arrow-left, .completed-projects .slider .arrows .arrow-left, .first-screen .slider .arrows .arrow-right, .completed-projects .slider .arrows .arrow-right {
   width: 60px;
   height: 60px;
   border: 3px solid #bb1219;
@@ -18,7 +18,7 @@
   transition: 0.2s linear;
 }
 
-.first-screen .slider .slides-container .arrows .arrow-left:hover, .completed-projects .slides-container .arrows .arrow-left:hover, .first-screen .slider .slides-container .arrows .arrow-right:hover, .completed-projects .slides-container .arrows .arrow-right:hover {
+.first-screen .slider .arrows .arrow-left:hover, .completed-projects .slider .arrows .arrow-left:hover, .first-screen .slider .arrows .arrow-right:hover, .completed-projects .slider .arrows .arrow-right:hover {
   background: #e33239;
   border-color: #e33239;
 }
@@ -240,7 +240,7 @@ header .header-container .logo, footer .container .logo {
   }
 }
 
-.first-screen .slider .slides-container .arrows, .completed-projects .slides-container .arrows {
+.first-screen .slider .arrows, .completed-projects .slider .arrows {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -251,7 +251,7 @@ header .header-container .logo, footer .container .logo {
 }
 
 @media (max-width: 425px) {
-  .first-screen .slider .slides-container .arrows, .completed-projects .slides-container .arrows {
+  .first-screen .slider .arrows, .completed-projects .slider .arrows {
     display: none;
   }
 }
@@ -275,30 +275,27 @@ header .header-container .logo, footer .container .logo {
   }
 }
 
-.first-screen .slider .slides-container .arrows .arrow-left .fas, .completed-projects .slides-container .arrows .arrow-left .fas {
+.first-screen .slider .arrows .arrow-left .fas, .completed-projects .slider .arrows .arrow-left .fas {
   color: #2b2b2b;
   font-size: 36px;
   -webkit-transform: rotate(0);
           transform: rotate(0);
 }
 
-.first-screen .slider .slides-container .arrows .arrow-right .fas, .completed-projects .slides-container .arrows .arrow-right .fas {
+.first-screen .slider .arrows .arrow-right .fas, .completed-projects .slider .arrows .arrow-right .fas {
   color: #2b2b2b;
   font-size: 36px;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
-.first-screen .slider .slides-container, .completed-projects .slides-container {
+.first-screen .slider .slides-container, .completed-projects .slider .slides-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
-.first-screen .slider .slides-container .slide, .completed-projects .slides-container .slide {
+.first-screen .slider .slides-container .slide, .completed-projects .slider .slides-container .slide {
   position: relative;
   width: 100%;
 }
@@ -785,6 +782,12 @@ header .header-container .menu .contacts-info a:last-child {
 }
 
 .first-screen .slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: relative;
   margin-top: 30px;
 }
@@ -989,34 +992,44 @@ header .header-container .menu .contacts-info a:last-child {
   background: #ebebeb;
 }
 
-.completed-projects .slides-container {
+.completed-projects .slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.completed-projects .slider .slides-container {
   position: relative;
   margin: 70px 0 100px;
 }
 
-.completed-projects .slides-container .slide {
+.completed-projects .slider .slides-container .slide {
   opacity: 0;
 }
 
-.completed-projects .slides-container .active-slide {
+.completed-projects .slider .slides-container .active-slide {
   opacity: 1;
   margin: 0;
 }
 
 @media (max-width: 1440px) {
-  .completed-projects .slides-container {
+  .completed-projects .slider .slides-container {
     margin: 60px 0 80px;
   }
 }
 
 @media (max-width: 838px) {
-  .completed-projects .slides-container {
+  .completed-projects .slider .slides-container {
     margin: 50px 0 60px;
   }
 }
 
 @media (max-width: 670px) {
-  .completed-projects .slides-container {
+  .completed-projects .slider .slides-container {
     margin: 20px 0 10px;
   }
 }
@@ -1169,6 +1182,10 @@ header .header-container .menu .contacts-info a:last-child {
   .application-form #form {
     margin: 20px 0 10px;
   }
+}
+
+.reviews {
+  background: #ebebeb;
 }
 
 .reviews .videos {
