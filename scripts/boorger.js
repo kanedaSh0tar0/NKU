@@ -11,7 +11,7 @@ const closeBoorger = () => {
         menuBg.style.zIndex = '-1'
     }, 100)
     
-    boorgerMenu.style.top = '-100vh'
+    boorgerMenu.style.top = '-200vh'
     document.body.style.overflow = ''
 }
 
