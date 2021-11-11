@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let changeWidth = 1200
     let countForActive1 = Math.round((firstSlides.length / 2) - 1)
     let countForActive2 = Math.round((secondSlides.length / 2) - 1)
-    let margin = parseInt(window.getComputedStyle(firstSlides[0]).getPropertyValue('margin-right'))
+    let margin = parseInt(window.getComputedStyle(firstSlides[0]).marginRight)
 
     function controlsPosition(control, container) {
         let arrow = document.querySelector('.arrow-left')
@@ -89,8 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveSlide(direction) {
-        let margin = parseInt(window.getComputedStyle(firstSlides[0]).getPropertyValue('margin-right'))
-
         if (direction == 'Left') {
             countForActive1--
 
@@ -228,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         centerSlide(firstSlides, countForActive1, margin)
         centerSlide(secondSlides, countForActive2)
 
-        console.log(window.innerWidth)
+        console.log(margin)
     })
 
     changePoint()
@@ -248,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleTouchStart(event) {
         x = event.touches[0].clientX
         y = event.touches[0].clientY
+
     }
 
     function touchmove(event) {
