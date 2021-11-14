@@ -26,7 +26,7 @@
   }
 }
 
-header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button {
+header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button, .popup-area .popup-content #popupForm #popupBtn {
   background: #bb1219;
   color: #fff7f7;
   font-family: "Inter", sans-serif;
@@ -38,12 +38,12 @@ header .header-container button, .first-screen .mobile-btn, .application-form #f
   transition: background-color 0.2s linear;
 }
 
-header .header-container button:hover, .first-screen .mobile-btn:hover, .application-form #form #btn:hover, footer .container button:hover {
+header .header-container button:hover, .first-screen .mobile-btn:hover, .application-form #form #btn:hover, footer .container button:hover, .popup-area .popup-content #popupForm #popupBtn:hover {
   background: #e33239;
 }
 
 @media (max-width: 1440px) {
-  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button {
+  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button, .popup-area .popup-content #popupForm #popupBtn {
     height: 60px;
     width: 206px;
     font-size: 16px;
@@ -51,7 +51,7 @@ header .header-container button:hover, .first-screen .mobile-btn:hover, .applica
 }
 
 @media (max-width: 838px) {
-  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button {
+  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button, .popup-area .popup-content #popupForm #popupBtn {
     height: 50px;
     width: 176px;
     font-size: 14px;
@@ -59,7 +59,7 @@ header .header-container button:hover, .first-screen .mobile-btn:hover, .applica
 }
 
 @media (max-width: 425px) {
-  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button {
+  header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button, .popup-area .popup-content #popupForm #popupBtn {
     display: none;
   }
 }
@@ -309,6 +309,50 @@ header .header-container .logo, footer .container .logo {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.application-form #form #name,
+.application-form #form #tel, .popup-area .popup-content #popupForm #popupName,
+.popup-area .popup-content #popupForm #popupTel {
+  height: 70px;
+  width: 405px;
+  padding: 20px 30px;
+  background: none;
+  border: 1px solid #a2aab2;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+@media (max-width: 1440px) {
+  .application-form #form #name,
+  .application-form #form #tel, .popup-area .popup-content #popupForm #popupName,
+  .popup-area .popup-content #popupForm #popupTel {
+    height: 60px;
+    width: 332px;
+    padding: 17px 30px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 838px) {
+  .application-form #form #name,
+  .application-form #form #tel, .popup-area .popup-content #popupForm #popupName,
+  .popup-area .popup-content #popupForm #popupTel {
+    width: 324px;
+    padding: 19px 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 425px) {
+  .application-form #form #name,
+  .application-form #form #tel, .popup-area .popup-content #popupForm #popupName,
+  .popup-area .popup-content #popupForm #popupTel {
+    width: 290px;
+    height: 50px;
+    padding: 16px 20px;
+    font-size: 12px;
+  }
 }
 
 * {
@@ -1090,46 +1134,6 @@ header .header-container .menu .contacts-info a:last-child {
   margin: 50px 0 100px;
 }
 
-.application-form #form #name,
-.application-form #form #tel {
-  height: 70px;
-  width: 405px;
-  padding: 20px 30px;
-  background: none;
-  border: 1px solid #a2aab2;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-}
-
-@media (max-width: 1440px) {
-  .application-form #form #name,
-  .application-form #form #tel {
-    height: 60px;
-    width: 332px;
-    padding: 17px 30px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 838px) {
-  .application-form #form #name,
-  .application-form #form #tel {
-    width: 324px;
-    padding: 19px 30px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 425px) {
-  .application-form #form #name,
-  .application-form #form #tel {
-    width: 290px;
-    height: 50px;
-    padding: 16px 20px;
-    font-size: 12px;
-  }
-}
-
 @media (max-width: 889px) {
   .application-form #form #btn {
     margin-top: 15px;
@@ -1576,5 +1580,88 @@ footer .container button {
   .btn {
     display: none;
   }
+}
+
+.popup-area {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px 10px;
+  z-index: 100;
+  background: #c5cbd2d5;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.popup-area .popup-content {
+  position: relative;
+  background: #dfe1e3;
+  padding: 50px;
+}
+
+.popup-area .popup-content #popupForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.popup-area .popup-content #popupForm #popupName,
+.popup-area .popup-content #popupForm #popupTel {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 425px) {
+  .popup-area .popup-content #popupForm #popupBtn {
+    display: block;
+  }
+}
+
+.popup-area .popup-content #popupForm .file {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.popup-area .popup-content #popupForm .file #popupFile {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.popup-area .popup-content #popupForm .file label {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.popup-area .popup-content #popupForm .file label:after {
+  content: "";
+  background-image: url(../img/Vector.png);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.popup-area .popup-content .fa-times {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

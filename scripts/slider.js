@@ -92,7 +92,7 @@ document.onreadystatechange = function () {
     function moveSlide(direction, touch) {
         const move = () => {
             firstSlides.forEach((item, ind) => {
-                item.style.transition = 'transform .5s linear, opacity .5s linear'
+                item.style.transition = 'transform .3s linear, opacity .5s linear'
                 item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2))}px)`
 
                 item.classList.remove('active-slide')
@@ -138,36 +138,34 @@ document.onreadystatechange = function () {
     }
 
     function moveProjectSlide(direction) {
+        const move = () => {
+            secondSlides.forEach((item, ind) => {
+                item.style.transition = 'transform .3s linear, opacity .5s linear'
+                item.style.transform = `translateX(-${countForActive2 * (item.offsetWidth)}px)`
+
+                item.classList.remove('active-slide')
+                ind == countForActive2 ? item.classList.add('active-slide') : false
+            })
+        }
+
+        const checkSliderBorder = () => {
+            if (countForActive2 < 0) {
+                countForActive2 = secondSlides.length - 1
+            } else if (countForActive2 > secondSlides.length - 1) {
+                countForActive2 = 0
+            }
+        }
+
         if (direction == 'Left') {
             countForActive2--
 
-            if (countForActive2 < 0) {
-                countForActive2 = secondSlides.length - 1
-            } else if (countForActive2 > secondSlides.length - 1) {
-                countForActive2 = 0
-            }
-
-            secondSlides.forEach((item, ind) => {
-                item.style.transform = `translateX(-${countForActive2 * (item.offsetWidth)}px)`
-
-                item.classList.remove('active-slide')
-                ind == countForActive2 ? item.classList.add('active-slide') : false
-            })
+            checkSliderBorder()
+            move()
         } else if (direction == 'Right') {
             countForActive2++
 
-            if (countForActive2 < 0) {
-                countForActive2 = secondSlides.length - 1
-            } else if (countForActive2 > secondSlides.length - 1) {
-                countForActive2 = 0
-            }
-
-            secondSlides.forEach((item, ind) => {
-                item.style.transform = `translateX(-${countForActive2 * (item.offsetWidth)}px)`
-
-                item.classList.remove('active-slide')
-                ind == countForActive2 ? item.classList.add('active-slide') : false
-            })
+            checkSliderBorder()
+            move()
         }
     }
 
@@ -184,7 +182,7 @@ document.onreadystatechange = function () {
                     item.classList.add('info-active')
                     setTimeout(() => {
                         item.style.opacity = 1
-                    }, 500)
+                    }, 300)
                 }
             }, 250)
         })
@@ -256,9 +254,9 @@ document.onreadystatechange = function () {
     slidesContainer[0].addEventListener('mouseup', () => {
         slidesContainer[0].style.cursor = 'grab'
 
-        if (xMove > 100) {
+        if (xMove > 200) {
             moveSlide('Left')
-        } else if (xMove < -100) {
+        } else if (xMove < -200) {
             moveSlide('Right')
         } else moveSlide('Res')
     })
@@ -353,4 +351,24 @@ document.onreadystatechange = function () {
             })
         })
     }
+
+
+    // Popup
+
+    const popupBtn = document.querySelectorAll('.popup-btn')
+    const body = document.querySelector('body')
+    const popupArea = document.querySelector('.popup-area')
+    const popupClose = document.querySelector('.popup-close')
+
+    popupBtn.forEach(item => {
+        item.addEventListener('click', () => {
+            popupArea.style.display = 'flex'
+            body.style.overflow = 'hidden'
+        })
+    })
+
+    popupClose.addEventListener('click', () => {
+        popupArea.style.display = 'none'
+        body.style.overflow = 'auto'
+    })
 };

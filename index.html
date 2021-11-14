@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <button>Оставить заявку</button>
+            <button class="popup-btn">Оставить заявку</button>
         </div>
         </div>
     </header>
@@ -296,7 +296,7 @@
                 <a href="#contacts">Контакты</a>
             </nav>
 
-            <button>Оставить заявку</button>
+            <button class="popup-btn">Оставить заявку</button>
         </div>
     </footer>
 
@@ -306,6 +306,21 @@
         </div>
     </a>
 
+    <div class="popup-area">
+        <div class="popup-content">
+            <i class="fas fa-times popup-close"></i>
+
+            <form id="popupForm">
+                <input id="popupName" type="text" placeholder="Имя">
+                <input id="popupTel" type="tel" placeholder="Номер телефона">
+                <div class="file">
+                    <input id="popupFile" type="file" value="Прикрепить проект">
+                    <label for="popupFile">Прикрепить проект</label>
+                </div>
+                <input id="popupBtn" type="button" value="Оставить заявку">
+            </form>
+        </div>
+    </div>
 
 </body>
 
