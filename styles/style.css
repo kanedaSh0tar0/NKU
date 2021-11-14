@@ -14,13 +14,16 @@
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
+  pointer-events: auto;
   -webkit-transition: 0.2s linear;
   transition: 0.2s linear;
 }
 
-.first-screen .slider .arrows .arrow-left:hover, .completed-projects .slider .arrows .arrow-left:hover, .first-screen .slider .arrows .arrow-right:hover, .completed-projects .slider .arrows .arrow-right:hover {
-  background: #e33239;
-  border-color: #e33239;
+@media (min-width: 769px) {
+  .first-screen .slider .arrows .arrow-left:hover, .completed-projects .slider .arrows .arrow-left:hover, .first-screen .slider .arrows .arrow-right:hover, .completed-projects .slider .arrows .arrow-right:hover {
+    background: #e33239;
+    border-color: #e33239;
+  }
 }
 
 header .header-container button, .first-screen .mobile-btn, .application-form #form #btn, footer .container button {
@@ -248,6 +251,7 @@ header .header-container .logo, footer .container .logo {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  pointer-events: none;
 }
 
 @media (max-width: 425px) {
@@ -301,10 +305,10 @@ header .header-container .logo, footer .container .logo {
   position: relative;
   max-width: 1100px;
   width: 100%;
-  -webkit-transition: opacity 0.5s linear, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: opacity 0.5s linear, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s linear;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s linear, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 * {
@@ -1564,7 +1568,7 @@ footer .container button {
     width: 60px;
     height: 60px;
     right: 20px;
-    bottom: 138px;
+    bottom: 20px;
   }
 }
 

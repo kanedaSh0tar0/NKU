@@ -44,7 +44,7 @@ document.onreadystatechange = function () {
         })
     }
 
-    function sliderBorders() {
+    function sliderBordersForArrows() {
         let c = firstArrows.querySelectorAll('.arrow')
         if (countForActive1 == firstSlides.length - 1) {
             c[1].style.opacity = 0
@@ -89,44 +89,38 @@ document.onreadystatechange = function () {
         } else false
     }
 
-    function moveSlide(direction) {
-        let margin = parseInt(window.getComputedStyle(firstSlides[0]).marginRight)
+    function moveSlide(direction, touch) {
+        const move = () => {
+            firstSlides.forEach((item, ind) => {
+                item.style.transition = 'transform .5s linear, opacity .5s linear'
+                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2))}px)`
+
+                item.classList.remove('active-slide')
+                ind == countForActive1 ? item.classList.add('active-slide') : false
+            })
+        }
+
+        const checkSliderBorder = () => {
+            if (countForActive1 < 0) {
+                countForActive1 = 0
+            } else if (countForActive1 > firstSlides.length - 1) {
+                countForActive1 = firstSlides.length - 1
+            }
+        }
 
         if (direction == 'Left') {
             countForActive1--
-
-            if (countForActive1 < 0) {
-                countForActive1 = 0
-            } else if (countForActive1 > firstSlides.length - 1) {
-                countForActive1 = firstSlides.length - 1
-            }
-
-            firstSlides.forEach((item, ind) => {
-                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2))}px)`
-
-                item.classList.remove('active-slide')
-                ind == countForActive1 ? item.classList.add('active-slide') : false
-            })
-
+            checkSliderBorder()
+            move()
         } else if (direction == 'Right') {
             countForActive1++
-
-            if (countForActive1 < 0) {
-                countForActive1 = 0
-            } else if (countForActive1 > firstSlides.length - 1) {
-                countForActive1 = firstSlides.length - 1
-            }
-
-            firstSlides.forEach((item, ind) => {
-                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2))}px)`
-
-                item.classList.remove('active-slide')
-                ind == countForActive1 ? item.classList.add('active-slide') : false
-            })
-
+            checkSliderBorder()
+            move()
         } else if (direction == 'Res') {
+            move()
+        } else if (direction == 'Touch') {
             firstSlides.forEach(item => {
-                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2))}px)`
+                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2)) - touch}px)`
             })
         }
 
@@ -134,9 +128,13 @@ document.onreadystatechange = function () {
             ind == countForActive1 ? item.classList.add('active-point') : item.classList.remove('active-point')
         })
 
+        setTimeout(() => {
+            firstSlides.forEach(item => {
+                item.style.transition = 'transform 0s linear, opacity .5s linear'
+            })
+        }, 100)
 
-
-        sliderBorders()
+        sliderBordersForArrows()
     }
 
     function moveProjectSlide(direction) {
@@ -224,7 +222,7 @@ document.onreadystatechange = function () {
     centerSlide(secondSlides, countForActive2)
 
     window.addEventListener('resize', () => {
-        let margin = parseInt(window.getComputedStyle(firstSlides[0]).marginRight)
+        margin = parseInt(window.getComputedStyle(firstSlides[0]).marginRight)
 
         controlsPosition(sliderControls[0], slidesContainer[0])
         controlsPosition(sliderControls[1], slidesContainer[1])
@@ -241,6 +239,41 @@ document.onreadystatechange = function () {
     slidesContainer[0].addEventListener('touchmove', touchmove)
     slidesContainer[0].addEventListener('touchend', touchEnd)
 
+    slidesContainer[0].addEventListener('mouseenter', () => {
+        slidesContainer[0].style.cursor = 'grab'
+    })
+
+    slidesContainer[0].addEventListener('mousedown', event => {
+        grabbing = true
+        slidesContainer[0].style.cursor = 'grabbing'
+        x = event.clientX
+    })
+
+    window.addEventListener('mouseup', () => {
+        grabbing = false
+    })
+
+    slidesContainer[0].addEventListener('mouseup', () => {
+        slidesContainer[0].style.cursor = 'grab'
+
+        if (xMove > 100) {
+            moveSlide('Left')
+        } else if (xMove < -100) {
+            moveSlide('Right')
+        } else moveSlide('Res')
+    })
+
+    slidesContainer[0].addEventListener('mousemove', event => {
+        if (!grabbing) return
+        event.preventDefault()
+        xMove = event.clientX - x
+
+        firstSlides.forEach(item => {
+            item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2)) - xMove}px)`
+        })
+    })
+
+    let grabbing = false
     let x = null
     let y = null
     let xMove = null
@@ -255,15 +288,23 @@ document.onreadystatechange = function () {
     function touchmove(event) {
         xMove = event.touches[0].clientX - x
         yMove = event.touches[0].clientY - y
-        if (!x || !y) return false
+
+        if ((!x || !y) || Math.abs(yMove) > Math.abs(xMove)) {
+            return false
+        } else {
+            moveSlide('Touch', xMove)
+        }
+
     }
 
     function touchEnd() {
         if (Math.abs(xMove) > Math.abs(yMove)) {
-            if (xMove > 0) {
+            if (xMove > 100) {
                 moveSlide('Left')
-            } else moveSlide('Right')
-        } else false
+            } else if (xMove < -100) {
+                moveSlide('Right')
+            } else moveSlide('Res')
+        } else moveSlide('Res')
     }
 
     // Boorger
