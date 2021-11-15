@@ -1590,6 +1590,7 @@ footer .container button {
   height: 100%;
   padding: 30px 10px;
   z-index: 100;
+  opacity: 0;
   background: #c5cbd2d5;
   display: none;
   -webkit-box-align: center;
@@ -1598,12 +1599,17 @@ footer .container button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
 }
 
 .popup-area .popup-content {
   position: relative;
   background: #dfe1e3;
   padding: 50px;
+  left: -100vw;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .popup-area .popup-content #popupForm {

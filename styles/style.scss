@@ -1293,17 +1293,21 @@ footer {
     height: 100%;
     padding: 30px 10px;
     z-index: 100;
+    opacity: 0;
 
     background: #c5cbd2d5;
 
     display: none;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.3s linear;
 
     .popup-content {
         position: relative;
         background: $darkGray;
         padding: 50px;
+        left: -100vw;
+        transition: all 0.3s linear;
 
         #popupForm {
             display: flex;

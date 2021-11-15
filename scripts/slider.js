@@ -89,7 +89,7 @@ document.onreadystatechange = function () {
         } else false
     }
 
-    function moveSlide(direction, touch) {
+    function moveSlide(direction) {
         const move = () => {
             firstSlides.forEach((item, ind) => {
                 item.style.transition = 'transform .3s linear, opacity .5s linear'
@@ -118,10 +118,6 @@ document.onreadystatechange = function () {
             move()
         } else if (direction == 'Res') {
             move()
-        } else if (direction == 'Touch') {
-            firstSlides.forEach(item => {
-                item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2)) - touch}px)`
-            })
         }
 
         points.forEach((item, ind) => {
@@ -268,6 +264,9 @@ document.onreadystatechange = function () {
 
         firstSlides.forEach(item => {
             item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2)) - xMove}px)`
+            countForActive1 <= 0 ?
+                item.style.transform = `translateX(${countForActive1 * (item.offsetWidth + (margin * 2)) + xMove}px)`
+                : false
         })
     })
 
@@ -280,19 +279,18 @@ document.onreadystatechange = function () {
     function handleTouchStart(event) {
         x = event.touches[0].clientX
         y = event.touches[0].clientY
-
     }
 
     function touchmove(event) {
         xMove = event.touches[0].clientX - x
         yMove = event.touches[0].clientY - y
 
-        if ((!x || !y) || Math.abs(yMove) > Math.abs(xMove)) {
-            return false
-        } else {
-            moveSlide('Touch', xMove)
-        }
-
+        firstSlides.forEach(item => {
+            item.style.transform = `translateX(-${countForActive1 * (item.offsetWidth + (margin * 2)) - xMove}px)`
+            countForActive1 <= 0 ?
+                item.style.transform = `translateX(${countForActive1 * (item.offsetWidth + (margin * 2)) + xMove}px)`
+                : false
+        })
     }
 
     function touchEnd() {
@@ -304,71 +302,4 @@ document.onreadystatechange = function () {
             } else moveSlide('Res')
         } else moveSlide('Res')
     }
-
-    // Boorger
-
-    const boorgerMenu = document.querySelector('.boorger-menu')
-    const boorgerBtn = document.querySelector('.boorger-menu-btn')
-    const menuBg = document.querySelector('.menu-bg')
-    const closeBtn = document.querySelector('.fa-times')
-
-    const closeBoorger = () => {
-        menuBg.style.opacity = '0'
-        setTimeout(() => {
-            menuBg.style.zIndex = '-1'
-        }, 100)
-
-        boorgerMenu.style.top = '-200vh'
-        document.body.style.overflow = ''
-    }
-
-    boorgerBtn.addEventListener('click', () => {
-        menuBg.style.zIndex = '2'
-        boorgerMenu.style.top = '0'
-        setTimeout(() => {
-            menuBg.style.opacity = '.6'
-        }, 100)
-
-        document.body.style.overflow = 'hidden'
-    })
-
-    closeBtn.addEventListener('click', () => {
-        closeBoorger()
-    })
-
-    // Scroll
-    let nav = document.getElementsByTagName('a')
-
-    for (let item of nav) {
-        item.addEventListener('click', event => {
-            event.preventDefault()
-            closeBoorger()
-
-            let itemHref = item.getAttribute('href')
-            document.querySelector(`${itemHref}`).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            })
-        })
-    }
-
-
-    // Popup
-
-    const popupBtn = document.querySelectorAll('.popup-btn')
-    const body = document.querySelector('body')
-    const popupArea = document.querySelector('.popup-area')
-    const popupClose = document.querySelector('.popup-close')
-
-    popupBtn.forEach(item => {
-        item.addEventListener('click', () => {
-            popupArea.style.display = 'flex'
-            body.style.overflow = 'hidden'
-        })
-    })
-
-    popupClose.addEventListener('click', () => {
-        popupArea.style.display = 'none'
-        body.style.overflow = 'auto'
-    })
 };
